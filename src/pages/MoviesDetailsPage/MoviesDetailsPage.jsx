@@ -4,29 +4,27 @@ import { fetchMovieById } from "../../../api/api.js";
 import { useState, useEffect } from "react";
 
 const MoviesDetailsPage = () => {
-  const [movieById, setMovieById] = useState([]);
+  const [movieById, setMovieById] = useState(null);
   const params = useParams();
   const movieId = params.movieId;
 
-  useEffect(() => {
-    async function fetchMovieDetails() {
-      try {
-        const data = await fetchMovieById(movieId);
-        setMovieById(data);
-      } catch (error) {
-        console.error("Error fetching trending movies:", error);
-      }
+  async function fetchMovieDetails() {
+    try {
+      const data = await fetchMovieById(movieId);
+      setMovieById(data);
+    } catch (error) {
+      console.error("Error fetching trending movies:", error);
     }
+  }
+  useEffect(() => {
     fetchMovieDetails();
-  }, [movieId]);
+  }, []);
+  console.log(movieById);
+  if (!movieById) {
+    return <div>Loading</div>;
+  }
 
-  console.log("MovideByID", movieById);
-
-  return (
-    <>
-      <MovieDetails />
-    </>
-  );
+  return <MovieDetails {...movieById} />;
 };
 
 export default MoviesDetailsPage;

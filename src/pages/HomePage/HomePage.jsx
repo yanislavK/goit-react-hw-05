@@ -5,15 +5,16 @@ import TrendingMoviesList from "../../components/TrendingMoviesList/TrendingMovi
 const HomePage = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
 
-  useEffect(() => {
-    async function fetchMovies() {
-      try {
-        const data = await fetchTrendingMovies();
-        setTrendingMovies(data);
-      } catch (error) {
-        console.error("Error fetching trending movies:", error);
-      }
+  async function fetchMovies() {
+    try {
+      const data = await fetchTrendingMovies();
+      setTrendingMovies(data);
+    } catch (error) {
+      console.error("Error fetching trending movies:", error);
     }
+  }
+
+  useEffect(() => {
     fetchMovies();
   }, []);
 
