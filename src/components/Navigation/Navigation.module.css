@@ -1,0 +1,23 @@
+.header {
+  position: fixed; /* Фиксированное позиционирование */
+  top: 0; /* Расположение сверху страницы */
+  left: 0; /* Расположение слева страницы */
+  width: 100%; /* Ширина хедера */
+  background-color: #333; /* Цвет фона */
+  color: #fff; /* Цвет текста */
+  padding: 20px; /* Отступы внутри хедера */
+  /* text-align: center;  */
+  font-size: 24px; /* Размер текста */
+}
+
+.header h1 {
+  margin: 0; /* Убираем отступы для заголовка */
+}
+.link {
+  text-decoration: none;
+  color: white;
+  padding-left: 10px;
+}
+.active {
+  color: rgb(186, 189, 33);
+}
