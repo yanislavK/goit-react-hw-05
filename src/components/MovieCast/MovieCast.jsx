@@ -1,5 +1,4 @@
 const MovieCast = ({ movieCast }) => {
-  console.log(movieCast, "movieCast уже тут");
   const limitedCast = movieCast.slice(0, 5);
   return (
     <ul>

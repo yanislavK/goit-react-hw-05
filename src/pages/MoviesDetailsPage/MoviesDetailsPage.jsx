@@ -2,12 +2,14 @@ import MovieDetails from "../../components/MovieDetails/MovieDetails";
 import { useParams } from "react-router-dom";
 import { fetchMovieById, fetchMovieCast } from "../../../api/api.js";
 import { useState, useEffect } from "react";
+import MovieReviews from "../../components/MovieReviews/MovieReviews.jsx";
 import MovieCast from "../../components/MovieCast/MovieCast.jsx";
 
 const MoviesDetailsPage = () => {
   const [movieById, setMovieById] = useState(null);
   const [movieCast, setMovieCast] = useState(null);
   const [isCastClicked, setIsCastClicked] = useState(false);
+  const [isReviewsClicked, setIsReviewsClicked] = useState(false);
 
   const params = useParams();
   const movieId = params.movieId;
@@ -46,6 +48,14 @@ const MoviesDetailsPage = () => {
     setIsCastClicked(false);
   }
 
+  function handleReviewClick() {
+    setIsReviewsClicked(true);
+  }
+
+  function handleCloseReviews() {
+    setIsReviewsClicked(false);
+  }
+
   if (!movieById) {
     return <div>Loading</div>;
   }
@@ -56,7 +66,13 @@ const MoviesDetailsPage = () => {
       <button onClick={isCastClicked ? handleCloseCast : handleCastClick}>
         Cast overview
       </button>
+      <button
+        onClick={isReviewsClicked ? handleCloseReviews : handleReviewClick}
+      >
+        Review
+      </button>
       {isCastClicked && <MovieCast movieCast={movieCast} />}
+      {isReviewsClicked && <MovieReviews />}
     </>
   );
 };

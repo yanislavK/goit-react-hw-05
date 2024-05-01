@@ -1,6 +1,6 @@
-import MovieSearch from "../../components/MovieSearch/MovieSearch";
 import { useEffect, useState } from "react";
 import { searchMovieByName } from "../../../api/api.js";
+import MovieSearch from "../../components/MovieSearch/MovieSearch";
 import MovieSearchedList from "../../components/MovieSearchedList/MovieSearchedList.jsx";
 
 const MoviesPage = () => {
@@ -26,7 +26,6 @@ const MoviesPage = () => {
     }
   }, [searchMovie]);
 
-  console.log("foundMovies", foundMovies);
   return (
     <>
       <MovieSearch onSubmit={handleSearch} />
