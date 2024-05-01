@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchTrendingMovies } from "../../../api/api.js";
-import TrendingMoviesList from "../../components/TrendingMoviesList/TrendingMoviesList.jsx";
+import TrendingMoviesList from "../../components/TrendingMoviesList/TrendingMoviesList";
 
 const HomePage = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -20,4 +20,5 @@ const HomePage = () => {
 
   return <TrendingMoviesList trendingMovies={trendingMovies} />;
 };
+
 export default HomePage;

@@ -20,3 +20,19 @@ export async function fetchMovieById(movieId) {
   const response = await axios.get(`/3/movie/${movieId}`, options);
   return response.data;
 }
+
+export async function searchMovieByName(movieName) {
+  const response = await axios.get(
+    `/3/search/movie?query=${movieName}`,
+    options
+  );
+  return response.data.results;
+}
+
+export async function fetchMovieCast(movieId) {
+  const response = await axios.get(
+    `/3/movie/${movieId}/credits?language=en-US`,
+    options
+  );
+  return response.data.cast;
+}
