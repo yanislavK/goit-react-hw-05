@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { searchMovieByName } from "../../../api/api.js";
 import MovieSearch from "../../components/MovieSearch/MovieSearch";
-import MovieSearchedList from "../../components/MovieSearchedList/MovieSearchedList.jsx";
+import MovieList from "../../components/MovieList/MovieList.jsx";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MoviesPage = () => {
   const [searchMovie, setSearchMovie] = useState("");
@@ -14,9 +16,22 @@ const MoviesPage = () => {
   async function fetchSearchedMovies() {
     try {
       const data = await searchMovieByName(searchMovie);
-      setFoundMovies(data);
+      if (data.length === 0) {
+        toast("🦄 Movie not found", {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else {
+        setFoundMovies(data);
+      }
     } catch (error) {
-      console.error("Error fetching trending movies:", error);
+      console.error("Error fetching searched movies:", error);
     }
   }
 
@@ -29,9 +44,7 @@ const MoviesPage = () => {
   return (
     <>
       <MovieSearch onSubmit={handleSearch} />
-      {foundMovies.length !== 0 && (
-        <MovieSearchedList foundMovies={foundMovies} />
-      )}
+      {foundMovies.length !== 0 && <MovieList foundMovies={foundMovies} />}
     </>
   );
 };
