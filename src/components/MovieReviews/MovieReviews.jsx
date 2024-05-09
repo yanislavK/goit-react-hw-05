@@ -21,7 +21,7 @@ const MovieReviews = () => {
 
   useEffect(() => {
     getMovieReviews();
-  }, []);
+  }, [movieId]);
 
   if (!movieReview) {
     return <div>Loading</div>;

@@ -20,7 +20,7 @@ const MovieCast = () => {
 
   useEffect(() => {
     fetchMovieCastById();
-  }, []);
+  }, [movieId]);
 
   if (!movieCast) {
     return <div>Loading</div>;
@@ -43,7 +43,7 @@ const MovieCast = () => {
           </li>
         ))
       ) : (
-        <p>No overviews found</p>
+        <p>No cast overviews found</p>
       )}
     </ul>
   );
